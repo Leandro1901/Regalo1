@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Gina 🌻</title>
+    <style>
+        body {
+            background-color: #87CEEB; /* Cielo azul */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        h1 {
+            color: #333;
+            text-shadow: 2px 2px #fff;
+            text-align: center;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(4, 80px);
+            gap: 5px;
+            background-color: #5d4037;
+            padding: 10px;
+            border: 4px solid #3e2723;
+            border-radius: 10px;
+        }
+        .block {
+            width: 80px;
+            height: 80px;
+            background-color: #795548; /* Color tierra */
+            border: 4px solid #5d4037;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            cursor: pointer;
+            user-select: none;
+            transition: transform 0.1s;
+        }
+        .block:active {
+            transform: scale(0.95);
+        }
+        .flower {
+            background-color: #8bc34a; /* Color pasto */
+        }
+        #mensajeFinal {
+            display: none;
+            margin-top: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            border: 3px solid #fbc02d;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 id="instruccion">Toca la tierra para plantar 🌻</h1>
+
+    <div class="grid" id="jardin">
+        <!-- Generamos 16 bloques de tierra -->
+        <div class="block" onclick="plantar(this)"></div>
+        <div class="block" onclick="plantar(this)"></div>
+        <div class="block" onclick="plantar(this)"></div>
+        <div class="block" onclick="plantar(this)"></div>
+        <div class="block" onclick="plantar(this)"></div>
+        <div class="block" onclick="plantar(this)"></div>
+        <div class="block" onclick="plantar(this)"></div>
+        <div class="block" onclick="plantar(this)"></div>
+        <div class="block" onclick="plantar(this)"></div>
+        <div class="block" onclick="plantar(this)"></div>
+        <div class="block" onclick="plantar(this)"></div>
+        <div class="block" onclick="plantar(this)"></div>
+        <div class="block" onclick="plantar(this)"></div>
+        <div class="block" onclick="plantar(this)"></div>
+        <div class="block" onclick="plantar(this)"></div>
+        <div class="block" onclick="plantar(this)"></div>
+    </div>
+
+    <div id="mensajeFinal">
+        <h2>¡Feliz 21 de Septiembre! 💛</h2>
+        <p>Un jardín entero para ti. Escribe aquí tu mensaje especial...</p>
+    </div>
+
+    <script>
+        let floresPlantadas = 0;
+        const totalBloques = 16;
+
+        function plantar(bloque) {
+            // Evitar plantar dos veces en el mismo bloque
+            if (!bloque.classList.contains('flower')) {
+                bloque.classList.add('flower');
+                
+                // Aquí puedes poner emojis diferentes para los "easter eggs" usando un Math.random()
+                let probabilidad = Math.random();
+                if (probabilidad > 0.9) {
+                    bloque.innerHTML = "🧋"; // Boba sorpresa
+                } else if (probabilidad > 0.8) {
+                    bloque.innerHTML = "🐶"; // Perrito sorpresa
+                } else {
+                    bloque.innerHTML = "🌻"; // Flor amarilla
+                }
+                
+                floresPlantadas++;
+
+                // Comprobar si ya plantó todo
+                if (floresPlantadas === totalBloques) {
+                    document.getElementById('instruccion').style.display = 'none';
+                    document.getElementById('mensajeFinal').style.display = 'block';
+                }
+            }
+        }
+    </script>
+</body>
+</html>
